@@ -182,14 +182,23 @@
       return `<span class="garden-placeholder" role="img" aria-label="Temporary placeholder — no approved image yet"><span>Temporary<br />placeholder</span></span>`;
     };
 
-    // Device showcase (e.g. Zweka): a single phone centred in its frame, with the
-    // animation as the focus. WebP is served when supported, the GIF otherwise,
-    // and the static PNG for reduced-motion or if the animation fails to load.
+    // Device/mockup showcase (e.g. Zweka, Bayttaalim, MacBook Pro, Xtrempay): the
+    // UI fills a frame sized to the image's own ratio, so it is never stretched or
+    // cropped. WebP is served when supported, the GIF otherwise, and the static
+    // PNG for reduced-motion or if the animation fails to load.
     const deviceMarkup = (item, label) => {
       const staticSrc = asset(item.coverAsset);
       const webp = item.webpAsset ? `<source srcset="${escapeHtml(asset(item.webpAsset))}" type="image/webp" />` : "";
       const anim = asset(item.gifAsset || item.coverAsset);
       return `<picture class="garden-device"><source srcset="${escapeHtml(staticSrc)}" media="(prefers-reduced-motion: reduce)" />${webp}<img class="garden-device-img" src="${escapeHtml(anim)}" data-static="${escapeHtml(staticSrc)}" alt="${escapeHtml(label)}" loading="lazy" decoding="async" /></picture>`;
+    };
+
+    // Intrinsic aspect ratio for a device/mockup frame, so the frame is sized to
+    // the image exactly and the screen keeps its own proportions at every width.
+    // Validated before reaching the style attribute.
+    const frameStyle = (item) => {
+      if (/^[0-9.]+ ?\/ ?[0-9.]+$/.test(item.ratio || "")) return ` style="--frame-ratio:${item.ratio}"`;
+      return "";
     };
 
     gallery.innerHTML = (data.garden || []).map((item, index) => {
@@ -201,11 +210,13 @@
       const content = isDevice
         ? deviceMarkup(item, label)
         : `${coverMarkup(item, label)}${item.gifAsset ? `<img class="garden-gif" alt="" hidden />` : ""}`;
-      const inner = `<span class="garden-frame${isDevice ? " garden-frame--device" : ""}">${content}</span>`;
+      const frameClass = isDevice ? "garden-frame garden-frame--device" : "garden-frame";
+      const inner = `<span class="${frameClass}"${isDevice ? frameStyle(item) : ""}>${content}</span>`;
       const trigger = item.url
         ? `<a class="garden-trigger" href="${escapeHtml(item.url)}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(label)}">${inner}</a>`
         : `<button class="garden-trigger" type="button" data-garden="${index}" aria-label="${escapeHtml(label)}">${inner}</button>`;
-      return `<article class="garden-card garden-card--${escapeHtml(item.layout || "medium")}" data-previewing="false" data-gif="${escapeHtml(isDevice ? "" : item.gifAsset || "")}">${trigger}</article>`;
+      const cardClass = `garden-card garden-card--${escapeHtml(item.layout || "medium")}${isDevice ? " garden-card--device" : ""}`;
+      return `<article class="${cardClass}" data-previewing="false" data-gif="${escapeHtml(isDevice ? "" : item.gifAsset || "")}">${trigger}</article>`;
     }).join("");
 
     // If the animation cannot load, fall back to the static poster. Delegated so
@@ -242,7 +253,7 @@
       if (!button) return;
       const item = data.garden[button.dataset.garden];
       const frame = item.device
-        ? `<div class="preview-frame preview-frame--device">${deviceMarkup(item, item.title)}</div>`
+        ? `<div class="preview-frame preview-frame--device"${frameStyle(item)}>${deviceMarkup(item, item.title)}</div>`
         : item.gifAsset
         ? `<img class="garden-image" src="${escapeHtml(asset(item.gifAsset))}" alt="" />`
         : `<span class="garden-placeholder preview-placeholder" role="img" aria-label="Placeholder — no approved image yet"><span>Placeholder</span></span>`;
