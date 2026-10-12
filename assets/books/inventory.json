@@ -1,0 +1,485 @@
+{
+  "generatedFrom": "content.js",
+  "total": 26,
+  "filters": [
+    "All",
+    "Design & Creativity",
+    "Business",
+    "Faith & Deen",
+    "Personal Growth",
+    "UoPeople & Computer Science",
+    "Engineering"
+  ],
+  "totals": {
+    "books": 26,
+    "byCategory": {
+      "Design & Creativity": 8,
+      "Business": 4,
+      "Faith & Deen": 3,
+      "Personal Growth": 8,
+      "UoPeople & Computer Science": 3,
+      "Engineering": 0
+    },
+    "byStatus": {
+      "Read": 14,
+      "To read": 12
+    }
+  },
+  "sections": [
+    {
+      "section": "Design & Creativity",
+      "status": "Read",
+      "category": "Design & Creativity",
+      "books": [
+        "design-everyday-things",
+        "dont-make-me-think",
+        "sprint",
+        "show-your-work",
+        "steal-like-an-artist"
+      ]
+    },
+    {
+      "section": "Personal Growth",
+      "status": "Read",
+      "category": "Personal Growth",
+      "books": [
+        "atomic-habits",
+        "subtle-art"
+      ]
+    },
+    {
+      "section": "Faith & Deen",
+      "status": "Read",
+      "category": "Faith & Deen",
+      "books": [
+        "rulings-muslim-woman",
+        "disease-and-the-cure",
+        "my-hifdh-guide"
+      ]
+    },
+    {
+      "section": "Business",
+      "status": "Read",
+      "category": "Business",
+      "books": [
+        "personal-mba",
+        "mom-test",
+        "lean-startup",
+        "psychology-of-money"
+      ]
+    },
+    {
+      "section": "Design & Product",
+      "status": "To read",
+      "category": "Design & Creativity",
+      "books": [
+        "inspired",
+        "articulating-design-decisions"
+      ]
+    },
+    {
+      "section": "Personal Growth",
+      "status": "To read",
+      "category": "Personal Growth",
+      "books": [
+        "deep-work",
+        "essentialism",
+        "mindset"
+      ]
+    },
+    {
+      "section": "Thinking & Communication",
+      "status": "To read",
+      "category": "Personal Growth",
+      "books": [
+        "thinking-in-systems",
+        "thinking-fast-and-slow",
+        "made-to-stick"
+      ]
+    },
+    {
+      "section": "To confirm",
+      "status": "To read",
+      "category": "Design & Creativity",
+      "books": [
+        "artists-way"
+      ]
+    },
+    {
+      "section": "UoPeople & Computer Science",
+      "status": "To read",
+      "category": "UoPeople & Computer Science",
+      "books": [
+        "college-success",
+        "think-python",
+        "basics-of-python-programming"
+      ]
+    }
+  ],
+  "books": [
+    {
+      "id": "design-everyday-things",
+      "title": "The Design of Everyday Things",
+      "author": "Don Norman",
+      "section": "Design & Creativity",
+      "category": "Design & Creativity",
+      "status": "Read",
+      "isbn": "9780465050659",
+      "edition": null,
+      "cover": "assets/books/the-design-of-everyday-things-don-norman.jpg",
+      "coverSource": "https://covers.openlibrary.org/b/isbn/9780465050659-L.jpg",
+      "coverVerified": true,
+      "reflectionStatus": "starter"
+    },
+    {
+      "id": "dont-make-me-think",
+      "title": "Don't Make Me Think",
+      "author": "Steve Krug",
+      "section": "Design & Creativity",
+      "category": "Design & Creativity",
+      "status": "Read",
+      "isbn": "9780321965516",
+      "edition": null,
+      "cover": "assets/books/don-t-make-me-think-steve-krug.jpg",
+      "coverSource": "https://covers.openlibrary.org/b/isbn/9780321965516-L.jpg",
+      "coverVerified": true,
+      "reflectionStatus": "starter"
+    },
+    {
+      "id": "sprint",
+      "title": "Sprint",
+      "author": "Jake Knapp",
+      "section": "Design & Creativity",
+      "category": "Design & Creativity",
+      "status": "Read",
+      "isbn": "9781501121746",
+      "edition": null,
+      "cover": "assets/books/sprint-jake-knapp.jpg",
+      "coverSource": "https://covers.openlibrary.org/b/isbn/9781501121746-L.jpg",
+      "coverVerified": true,
+      "reflectionStatus": "empty"
+    },
+    {
+      "id": "show-your-work",
+      "title": "Show Your Work!",
+      "author": "Austin Kleon",
+      "section": "Design & Creativity",
+      "category": "Design & Creativity",
+      "status": "Read",
+      "isbn": "9780761178972",
+      "edition": null,
+      "cover": "assets/books/show-your-work-austin-kleon.jpg",
+      "coverSource": "https://books.google.com/books?vid=ISBN9780761178972&printsec=frontcover&img=1&zoom=2",
+      "coverVerified": true,
+      "reflectionStatus": "starter"
+    },
+    {
+      "id": "steal-like-an-artist",
+      "title": "Steal Like an Artist",
+      "author": "Austin Kleon",
+      "section": "Design & Creativity",
+      "category": "Design & Creativity",
+      "status": "Read",
+      "isbn": "9780761169253",
+      "edition": null,
+      "cover": "assets/books/steal-like-an-artist-austin-kleon.jpg",
+      "coverSource": "https://books.google.com/books?vid=ISBN9780761169253&printsec=frontcover&img=1&zoom=2",
+      "coverVerified": true,
+      "reflectionStatus": "empty"
+    },
+    {
+      "id": "atomic-habits",
+      "title": "Atomic Habits",
+      "author": "James Clear",
+      "section": "Personal Growth",
+      "category": "Personal Growth",
+      "status": "Read",
+      "isbn": "9780735211292",
+      "edition": null,
+      "cover": "assets/books/atomic-habits-james-clear.jpg",
+      "coverSource": "https://covers.openlibrary.org/b/isbn/9780735211292-L.jpg",
+      "coverVerified": true,
+      "reflectionStatus": "starter"
+    },
+    {
+      "id": "subtle-art",
+      "title": "The Subtle Art of Not Giving a F*ck",
+      "author": "Mark Manson",
+      "section": "Personal Growth",
+      "category": "Personal Growth",
+      "status": "Read",
+      "isbn": "9780062457714",
+      "edition": null,
+      "cover": "assets/books/the-subtle-art-of-not-giving-a-f-ck-mark-manson.jpg",
+      "coverSource": "https://covers.openlibrary.org/b/isbn/9780062457714-L.jpg",
+      "coverVerified": true,
+      "reflectionStatus": "empty"
+    },
+    {
+      "id": "rulings-muslim-woman",
+      "title": "Rulings Pertaining to the Muslim Woman",
+      "author": "Salih Al-Fawzaan",
+      "section": "Faith & Deen",
+      "category": "Faith & Deen",
+      "status": "Read",
+      "isbn": "9789960293479",
+      "edition": "Darussalam, 1st ed. October 2002, trans. Burhan Loqueman",
+      "cover": "assets/books/rulings-pertaining-to-the-muslim-woman-salih-al-fawzaan.jpg",
+      "coverSource": "https://darussalamus.com/cdn/shop/files/rulingspertainingtomuslimwomen_1.jpg",
+      "coverVerified": true,
+      "reflectionStatus": "empty"
+    },
+    {
+      "id": "disease-and-the-cure",
+      "title": "The Disease and the Cure",
+      "author": "Ibn al-Qayyim",
+      "section": "Faith & Deen",
+      "category": "Faith & Deen",
+      "status": "Read",
+      "isbn": "9781532369414",
+      "edition": "Hikmah Publications, 2020, trans. Osman Hamid",
+      "cover": "assets/books/the-disease-and-the-cure-ibn-al-qayyim.jpg",
+      "coverSource": "https://www.emaanlibrary.com/wp-content/uploads/2022/01/The-Disease-The-Cure-Imam-Ibn-Al-Qayyim-compressed.pdf (Hikmah Publications cover, page 1)",
+      "coverVerified": false,
+      "reflectionStatus": "empty"
+    },
+    {
+      "id": "my-hifdh-guide",
+      "title": "My Hifdh Guide",
+      "author": "Abdulrasaq Bilal Oyeniran (IbnulArobiy)",
+      "section": "Faith & Deen",
+      "category": "Faith & Deen",
+      "status": "Read",
+      "isbn": null,
+      "edition": null,
+      "cover": "assets/books/my-hifdh-guide-abdulrasaq-bilal-oyeniran.png",
+      "coverSource": "user-supplied cover (provided by the designer)",
+      "coverVerified": true,
+      "reflectionStatus": "empty"
+    },
+    {
+      "id": "personal-mba",
+      "title": "The Personal MBA",
+      "author": "Josh Kaufman",
+      "section": "Business",
+      "category": "Business",
+      "status": "Read",
+      "isbn": "9781591845577",
+      "edition": null,
+      "cover": "assets/books/the-personal-mba-josh-kaufman.jpg",
+      "coverSource": "https://covers.openlibrary.org/b/isbn/9781591845577-L.jpg",
+      "coverVerified": true,
+      "reflectionStatus": "starter"
+    },
+    {
+      "id": "mom-test",
+      "title": "The Mom Test",
+      "author": "Rob Fitzpatrick",
+      "section": "Business",
+      "category": "Business",
+      "status": "Read",
+      "isbn": "9781492180746",
+      "edition": null,
+      "cover": "assets/books/the-mom-test-rob-fitzpatrick.jpg",
+      "coverSource": "https://covers.openlibrary.org/b/isbn/9781492180746-L.jpg",
+      "coverVerified": true,
+      "reflectionStatus": "starter"
+    },
+    {
+      "id": "lean-startup",
+      "title": "The Lean Startup",
+      "author": "Eric Ries",
+      "section": "Business",
+      "category": "Business",
+      "status": "Read",
+      "isbn": "9780307887894",
+      "edition": null,
+      "cover": "assets/books/the-lean-startup-eric-ries.jpg",
+      "coverSource": "https://covers.openlibrary.org/b/isbn/9780307887894-L.jpg",
+      "coverVerified": true,
+      "reflectionStatus": "starter"
+    },
+    {
+      "id": "psychology-of-money",
+      "title": "The Psychology of Money",
+      "author": "Morgan Housel",
+      "section": "Business",
+      "category": "Business",
+      "status": "Read",
+      "isbn": "9780857197689",
+      "edition": null,
+      "cover": "assets/books/the-psychology-of-money-morgan-housel.jpg",
+      "coverSource": "https://covers.openlibrary.org/b/isbn/9780857197689-L.jpg",
+      "coverVerified": true,
+      "reflectionStatus": "starter"
+    },
+    {
+      "id": "inspired",
+      "title": "INSPIRED",
+      "author": "Marty Cagan",
+      "section": "Design & Product",
+      "category": "Design & Creativity",
+      "status": "To read",
+      "isbn": "9781119387503",
+      "edition": null,
+      "cover": "assets/books/inspired-how-to-create-tech-products-customers-love-marty-cagan.jpg",
+      "coverSource": "https://covers.openlibrary.org/b/isbn/9781119387503-L.jpg",
+      "coverVerified": true,
+      "reflectionStatus": "starter"
+    },
+    {
+      "id": "articulating-design-decisions",
+      "title": "Articulating Design Decisions",
+      "author": "Tom Greever",
+      "section": "Design & Product",
+      "category": "Design & Creativity",
+      "status": "To read",
+      "isbn": "9781491921562",
+      "edition": null,
+      "cover": "assets/books/articulating-design-decisions-tom-greever.jpg",
+      "coverSource": "https://covers.openlibrary.org/b/isbn/9781491921562-L.jpg",
+      "coverVerified": true,
+      "reflectionStatus": "starter"
+    },
+    {
+      "id": "deep-work",
+      "title": "Deep Work",
+      "author": "Cal Newport",
+      "section": "Personal Growth",
+      "category": "Personal Growth",
+      "status": "To read",
+      "isbn": "9781455586691",
+      "edition": null,
+      "cover": "assets/books/deep-work-cal-newport.jpg",
+      "coverSource": "https://covers.openlibrary.org/b/isbn/9781455586691-L.jpg",
+      "coverVerified": true,
+      "reflectionStatus": "starter"
+    },
+    {
+      "id": "essentialism",
+      "title": "Essentialism",
+      "author": "Greg McKeown",
+      "section": "Personal Growth",
+      "category": "Personal Growth",
+      "status": "To read",
+      "isbn": "9780804137386",
+      "edition": null,
+      "cover": "assets/books/essentialism-greg-mckeown.jpg",
+      "coverSource": "https://covers.openlibrary.org/b/id/10658806-L.jpg",
+      "coverVerified": true,
+      "reflectionStatus": "starter"
+    },
+    {
+      "id": "mindset",
+      "title": "Mindset: The New Psychology of Success",
+      "author": "Carol S. Dweck",
+      "section": "Personal Growth",
+      "category": "Personal Growth",
+      "status": "To read",
+      "isbn": "9780345472328",
+      "edition": null,
+      "cover": "assets/books/mindset-the-new-psychology-of-success-carol-s-dweck.jpg",
+      "coverSource": "https://covers.openlibrary.org/b/isbn/9780345472328-L.jpg",
+      "coverVerified": true,
+      "reflectionStatus": "starter"
+    },
+    {
+      "id": "thinking-in-systems",
+      "title": "Thinking in Systems",
+      "author": "Donella H. Meadows",
+      "section": "Thinking & Communication",
+      "category": "Personal Growth",
+      "status": "To read",
+      "isbn": "9781603580557",
+      "edition": null,
+      "cover": "assets/books/thinking-in-systems-donella-h-meadows.jpg",
+      "coverSource": "https://covers.openlibrary.org/b/isbn/9781603580557-L.jpg",
+      "coverVerified": true,
+      "reflectionStatus": "starter"
+    },
+    {
+      "id": "thinking-fast-and-slow",
+      "title": "Thinking, Fast and Slow",
+      "author": "Daniel Kahneman",
+      "section": "Thinking & Communication",
+      "category": "Personal Growth",
+      "status": "To read",
+      "isbn": "9780374533557",
+      "edition": null,
+      "cover": "assets/books/thinking-fast-and-slow-daniel-kahneman.jpg",
+      "coverSource": "https://covers.openlibrary.org/b/isbn/9780374533557-L.jpg",
+      "coverVerified": true,
+      "reflectionStatus": "starter"
+    },
+    {
+      "id": "made-to-stick",
+      "title": "Made to Stick",
+      "author": "Chip Heath and Dan Heath",
+      "section": "Thinking & Communication",
+      "category": "Personal Growth",
+      "status": "To read",
+      "isbn": "9781400064281",
+      "edition": null,
+      "cover": "assets/books/made-to-stick-chip-heath.jpg",
+      "coverSource": "https://books.google.com/books?vid=ISBN9781400064281&printsec=frontcover&img=1&zoom=4",
+      "coverVerified": true,
+      "reflectionStatus": "starter"
+    },
+    {
+      "id": "artists-way",
+      "title": "The Artist's Way",
+      "author": "Julia Cameron",
+      "section": "To confirm",
+      "category": "Design & Creativity",
+      "status": "To read",
+      "isbn": "9781585421466",
+      "edition": null,
+      "cover": "assets/books/the-artist-s-way-julia-cameron.jpg",
+      "coverSource": "https://covers.openlibrary.org/b/id/111743-L.jpg",
+      "coverVerified": true,
+      "reflectionStatus": "empty"
+    },
+    {
+      "id": "college-success",
+      "title": "College Success",
+      "author": "Amy Baldwin",
+      "section": "UoPeople & Computer Science",
+      "category": "UoPeople & Computer Science",
+      "status": "To read",
+      "isbn": null,
+      "edition": "Open Library edition (first published 2020)",
+      "cover": "assets/books/college-success-amy-baldwin.jpg",
+      "coverSource": "https://covers.openlibrary.org/b/id/15113587-L.jpg",
+      "coverVerified": true,
+      "reflectionStatus": "empty"
+    },
+    {
+      "id": "think-python",
+      "title": "Think Python: How to Think Like a Computer Scientist",
+      "author": "Allen B. Downey",
+      "section": "UoPeople & Computer Science",
+      "category": "UoPeople & Computer Science",
+      "status": "To read",
+      "isbn": "9781491939369",
+      "edition": null,
+      "cover": "assets/books/think-python-how-to-think-like-a-computer-scientist-allen-b-downey.jpg",
+      "coverSource": "https://covers.openlibrary.org/b/id/736943-L.jpg",
+      "coverVerified": true,
+      "reflectionStatus": "empty"
+    },
+    {
+      "id": "basics-of-python-programming",
+      "title": "Basics of Python Programming: A Quick Guide for Beginners",
+      "author": "Krishna Kumar Mohbey and Malika Acharya",
+      "section": "UoPeople & Computer Science",
+      "category": "UoPeople & Computer Science",
+      "status": "To read",
+      "isbn": "9789815179644",
+      "edition": "Bentham Science Publishers, 2023",
+      "cover": "assets/books/basics-of-python-programming-mohbey-acharya.jpg",
+      "coverSource": "https://books.google.com/books?vid=ISBN9789815179644&printsec=frontcover&img=1&zoom=4",
+      "coverVerified": true,
+      "reflectionStatus": "empty"
+    }
+  ]
+}

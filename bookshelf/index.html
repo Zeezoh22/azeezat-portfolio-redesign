@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="A reading room — the books shaping Azeezat Ogunwande's practice as a designer, thinker, and person." />
+    <meta name="theme-color" content="#ffffff" />
+    <title>Bookshelf — Azeezat Ogunwande</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body data-page="bookshelf" data-root="../">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <a class="wordmark" href="../" aria-label="Azeezat Ogunwande home">AZEEZAT<span>_</span></a>
+      <nav aria-label="Primary navigation">
+        <a href="../#experience">Experience</a>
+        <a href="../#work">Work</a>
+        <a href="../writing/">Journaling</a>
+        <a href="../garden/">Garden</a>
+        <a href="./" aria-current="page">Bookshelf</a>
+      </nav>
+    </header>
+    <main id="main" class="page-main">
+      <section class="page-intro bookshelf-intro" aria-labelledby="shelf-heading">
+        <p class="kicker">Bookshelf</p>
+        <h1 id="shelf-heading">A reading room.</h1>
+        <p class="lede">The books shaping the designer, thinker, and person I am becoming — what I have read and what is next. Open any cover for notes.</p>
+      </section>
+      <section aria-labelledby="shelf-title">
+        <h2 id="shelf-title" class="visually-hidden">Reading list</h2>
+        <div id="shelf-filters" class="shelf-filters" role="tablist" aria-label="Filter books by category"></div>
+        <div id="book-grid" class="book-grid" role="tabpanel" aria-labelledby="shelf-tab-0"></div>
+        <p id="shelf-status" class="shelf-status" aria-live="polite"></p>
+        <button id="shelf-showall" class="shelf-showall" type="button" aria-expanded="false" hidden>Show all books</button>
+      </section>
+    </main>
+    <footer class="site-footer page-footer">
+      <span>© <span id="year"></span> Azeezat Ogunwande</span>
+      <a href="../#contact">Contact</a>
+    </footer>
+    <script src="../content.js"></script>
+    <script src="../script.js"></script>
+  </body>
+</html>
