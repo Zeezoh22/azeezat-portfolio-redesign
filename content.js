@@ -200,7 +200,7 @@ window.PORTFOLIO_CONTENT = {
     topics: ["Design", "Career", "Faith & deen", "Life", "Personal development"]
   },
   garden: [
-    { placeholder: true, layout: "tall", title: "Temporary placeholder 01", category: "Approved work pending", coverAsset: null, gifAsset: null, description: "Replace with an approved tall cover, optional GIF, and destination URL.", url: null },
+    { placeholder: false, layout: "tall", title: "Zweka", category: "Mobile commerce · Motion study", device: true, coverAsset: "assets/garden/zweka-shopping-journey.png", gifAsset: "assets/garden/zweka-shopping-journey.gif", webpAsset: "assets/garden/zweka-shopping-journey.webp", description: "A shopping journey motion study — discovering a listing, opening the Samsung Galaxy S24 product details, and landing on the seller's shop profile.", url: null },
     { placeholder: true, layout: "medium", title: "Temporary placeholder 02", category: "Approved work pending", coverAsset: null, gifAsset: null, description: "Replace with an approved interface or motion study.", url: null },
     { placeholder: true, layout: "small", title: "Temporary placeholder 03", category: "Approved work pending", coverAsset: null, gifAsset: null, description: "Replace with an approved compact visual study.", url: null },
     { placeholder: true, layout: "medium", title: "Temporary placeholder 04", category: "Approved work pending", coverAsset: null, gifAsset: null, description: "Replace with an approved product or experiment preview.", url: null },

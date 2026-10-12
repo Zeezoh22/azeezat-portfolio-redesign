@@ -182,18 +182,45 @@
       return `<span class="garden-placeholder" role="img" aria-label="Temporary placeholder — no approved image yet"><span>Temporary<br />placeholder</span></span>`;
     };
 
+    // Device showcase (e.g. Zweka): a single phone centred in its frame, with the
+    // animation as the focus. WebP is served when supported, the GIF otherwise,
+    // and the static PNG for reduced-motion or if the animation fails to load.
+    const deviceMarkup = (item, label) => {
+      const staticSrc = asset(item.coverAsset);
+      const webp = item.webpAsset ? `<source srcset="${escapeHtml(asset(item.webpAsset))}" type="image/webp" />` : "";
+      const anim = asset(item.gifAsset || item.coverAsset);
+      return `<picture class="garden-device"><source srcset="${escapeHtml(staticSrc)}" media="(prefers-reduced-motion: reduce)" />${webp}<img class="garden-device-img" src="${escapeHtml(anim)}" data-static="${escapeHtml(staticSrc)}" alt="${escapeHtml(label)}" loading="lazy" decoding="async" /></picture>`;
+    };
+
     gallery.innerHTML = (data.garden || []).map((item, index) => {
       const number = String(index + 1).padStart(2, "0");
       const label = item.placeholder
         ? `Placeholder design ${number} — no approved image yet`
         : `${item.title}${item.category ? `, ${item.category}` : ""}`;
-      const gif = item.gifAsset ? `<img class="garden-gif" alt="" hidden />` : "";
-      const inner = `<span class="garden-frame">${coverMarkup(item, label)}${gif}</span>`;
+      const isDevice = item.device === true;
+      const content = isDevice
+        ? deviceMarkup(item, label)
+        : `${coverMarkup(item, label)}${item.gifAsset ? `<img class="garden-gif" alt="" hidden />` : ""}`;
+      const inner = `<span class="garden-frame${isDevice ? " garden-frame--device" : ""}">${content}</span>`;
       const trigger = item.url
         ? `<a class="garden-trigger" href="${escapeHtml(item.url)}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(label)}">${inner}</a>`
         : `<button class="garden-trigger" type="button" data-garden="${index}" aria-label="${escapeHtml(label)}">${inner}</button>`;
-      return `<article class="garden-card garden-card--${escapeHtml(item.layout || "medium")}" data-previewing="false" data-gif="${escapeHtml(item.gifAsset || "")}">${trigger}</article>`;
+      return `<article class="garden-card garden-card--${escapeHtml(item.layout || "medium")}" data-previewing="false" data-gif="${escapeHtml(isDevice ? "" : item.gifAsset || "")}">${trigger}</article>`;
     }).join("");
+
+    // If the animation cannot load, fall back to the static poster. Delegated so
+    // it also covers the device image injected into the preview dialog.
+    document.addEventListener("error", (event) => {
+      const img = event.target;
+      if (!img || !img.classList || !img.classList.contains("garden-device-img")) return;
+      if (!img.dataset.static || img.dataset.failed) return;
+      img.dataset.failed = "true";
+      const fallback = document.createElement("img");
+      fallback.className = "garden-device-img";
+      fallback.src = img.dataset.static;
+      fallback.alt = img.alt;
+      img.closest("picture")?.replaceWith(fallback);
+    }, true);
 
     const setPreview = (card, requested) => {
       const gif = card.dataset.gif;
@@ -214,7 +241,9 @@
       const button = event.target.closest("[data-garden]");
       if (!button) return;
       const item = data.garden[button.dataset.garden];
-      const frame = item.gifAsset
+      const frame = item.device
+        ? `<div class="preview-frame preview-frame--device">${deviceMarkup(item, item.title)}</div>`
+        : item.gifAsset
         ? `<img class="garden-image" src="${escapeHtml(asset(item.gifAsset))}" alt="" />`
         : `<span class="garden-placeholder preview-placeholder" role="img" aria-label="Placeholder — no approved image yet"><span>Placeholder</span></span>`;
       const body = item.placeholder
