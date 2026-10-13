@@ -170,6 +170,102 @@
     }
   }
 
+  // Hero avatar — a 3D-like disc built from the existing 2D illustration.
+  // GSAP drives a subtle mouse-follow tilt/parallax between the circular
+  // background, the portrait and the lighting. It is a flat image with CSS
+  // perspective and layered elements — not a real 3D model. Disabled entirely
+  // for reduced-motion and touch (static presentation), and scoped to the
+  // avatar so no other content reacts to the pointer.
+  const avatar = $("#hero-avatar");
+  if (avatar) {
+    const avatarReduced = matchMedia("(prefers-reduced-motion: reduce)");
+    const avatarCanHover = matchMedia("(hover: hover) and (pointer: fine)").matches;
+
+    const setupAvatar = () => {
+      const gsap = window.gsap;
+      const scene = avatar.querySelector(".hero-avatar-scene");
+      const orb = avatar.querySelector(".hero-avatar-orb");
+      const back = avatar.querySelector(".hero-avatar-back");
+      const sheen = avatar.querySelector(".hero-avatar-sheen");
+      const image = avatar.querySelector(".hero-avatar-img");
+      if (avatarReduced.matches || !avatarCanHover || !gsap || !orb || !scene) return;
+
+      const quick = (target, prop, duration) => gsap.quickTo(target, prop, { duration: duration || 0.6, ease: "power3.out" });
+      const set = {
+        rotateY: quick(orb, "rotationY", 0.7),
+        rotateX: quick(orb, "rotationX", 0.7),
+        orbX: quick(orb, "x"),
+        orbY: quick(orb, "y"),
+        backX: quick(back, "x", 0.8),
+        backY: quick(back, "y", 0.8),
+        sheenX: quick(sheen, "x", 0.7),
+        sheenY: quick(sheen, "y", 0.7),
+        imageX: quick(image, "x", 0.7),
+        imageY: quick(image, "y", 0.7)
+      };
+
+      const idle = gsap.to(scene, { y: -6, duration: 3.4, ease: "sine.inOut", yoyo: true, repeat: -1 });
+
+      let rect = avatar.getBoundingClientRect();
+      let frame = 0;
+      let last = null;
+
+      const apply = () => {
+        const event = last;
+        if (!event) return;
+        const nx = (event.clientX - rect.left) / rect.width - 0.5;
+        const ny = (event.clientY - rect.top) / rect.height - 0.5;
+        set.rotateY(nx * 16);
+        set.rotateX(-ny * 16);
+        set.orbX(nx * 12);
+        set.orbY(ny * 12);
+        set.backX(-nx * 18);
+        set.backY(-ny * 14);
+        set.sheenX(-nx * 10);
+        set.sheenY(-ny * 8);
+        set.imageX(-nx * 8);
+        set.imageY(-ny * 6);
+      };
+
+      const onMove = (event) => {
+        if (event.pointerType === "touch") return;
+        last = event;
+        if (frame) return;
+        frame = requestAnimationFrame(() => { frame = 0; apply(); });
+      };
+      const onEnter = (event) => {
+        if (event.pointerType === "touch") return;
+        rect = avatar.getBoundingClientRect();
+        idle.pause();
+      };
+      const onLeave = () => {
+        last = null;
+        idle.play();
+        Object.keys(set).forEach((key) => set[key](0));
+      };
+
+      avatar.addEventListener("pointermove", onMove, { passive: true });
+      avatar.addEventListener("pointerenter", onEnter, { passive: true });
+      avatar.addEventListener("pointerleave", onLeave, { passive: true });
+
+      const teardown = () => {
+        avatar.removeEventListener("pointermove", onMove);
+        avatar.removeEventListener("pointerenter", onEnter);
+        avatar.removeEventListener("pointerleave", onLeave);
+        if (frame) cancelAnimationFrame(frame);
+        idle.kill();
+        gsap.killTweensOf([scene, orb, back, sheen, image].filter(Boolean));
+      };
+      window.addEventListener("pagehide", teardown, { once: true });
+    };
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", setupAvatar);
+    } else {
+      setupAvatar();
+    }
+  }
+
   // Garden gallery.
   const gallery = $("#garden-gallery");
   if (gallery) {
@@ -262,6 +358,99 @@
         : `<p>${escapeHtml(item.description || "")}</p>`;
       showDialog(`<p class="kicker">${escapeHtml(item.category || "")}</p><h2 id="dialog-title">${escapeHtml(item.title)}</h2><div class="preview-frame">${frame}</div>${body}`);
     });
+
+    // Motion (progressive enhancement): GSAP + ScrollTrigger layered over the
+    // static wall. Reveals stagger in as cards enter the viewport, and on
+    // pointer-fine desktops a gentle hover lift and cursor parallax add depth.
+    // Disabled for reduced-motion and touch; the gallery renders and reads fine
+    // without any of it.
+    const motionRoot = document.documentElement;
+    const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+    const startGardenMotion = () => {
+      const gsap = window.gsap;
+      const ScrollTrigger = window.ScrollTrigger;
+      if (!motionRoot.classList.contains("motion") || reducedMotion.matches || !gsap || !ScrollTrigger) {
+        motionRoot.classList.remove("motion");
+        return;
+      }
+      gsap.registerPlugin(ScrollTrigger);
+      gallery.dataset.motionStarted = "true";
+
+      const cards = Array.from(gallery.querySelectorAll(".garden-card"));
+      const imageOf = (card) => card.querySelector(".garden-image, .garden-device-img");
+
+      gsap.set(cards, { opacity: 0, y: 28 });
+      ScrollTrigger.batch(cards, {
+        start: "top 92%",
+        once: true,
+        batchMax: 3,
+        onEnter: (batch) => gsap.to(batch, { opacity: 1, y: 0, duration: 0.7, ease: "power2.out", stagger: 0.09, overwrite: true })
+      });
+      window.addEventListener("load", () => ScrollTrigger.refresh(), { once: true });
+
+      if (!canHover) return;
+
+      // Reusable quickTo setters so cursor parallax stays smooth and allocation-free.
+      const setters = new Map();
+      const parallaxFor = (image) => {
+        if (!setters.has(image)) {
+          setters.set(image, {
+            x: gsap.quickTo(image, "x", { duration: 0.5, ease: "power3" }),
+            y: gsap.quickTo(image, "y", { duration: 0.5, ease: "power3" })
+          });
+        }
+        return setters.get(image);
+      };
+
+      cards.forEach((card) => {
+        const image = imageOf(card);
+        const lift = () => {
+          gsap.to(card.querySelector(".garden-trigger"), { y: -6, duration: 0.45, ease: "power2.out" });
+          if (image) gsap.to(image, { scale: 1.04, duration: 0.7, ease: "power2.out" });
+        };
+        const settle = () => {
+          gsap.to(card.querySelector(".garden-trigger"), { y: 0, duration: 0.5, ease: "power2.out" });
+          if (image) gsap.to(image, { scale: 1, duration: 0.7, ease: "power2.out" });
+        };
+        card.addEventListener("pointerenter", lift);
+        card.addEventListener("pointerleave", settle);
+        card.addEventListener("focusin", lift);
+        card.addEventListener("focusout", settle);
+      });
+
+      let frame = 0;
+      gallery.addEventListener("pointermove", (event) => {
+        if (frame) return;
+        frame = requestAnimationFrame(() => {
+          frame = 0;
+          cards.forEach((card) => {
+            const image = imageOf(card);
+            if (!image) return;
+            const rect = card.getBoundingClientRect();
+            if (!rect.width || !rect.height) return;
+            const to = parallaxFor(image);
+            to.x(((event.clientX - (rect.left + rect.width / 2)) / rect.width) * 12);
+            to.y(((event.clientY - (rect.top + rect.height / 2)) / rect.height) * 10);
+          });
+        });
+      });
+      gallery.addEventListener("pointerleave", () => {
+        cards.forEach((card) => {
+          const image = imageOf(card);
+          if (image) { const to = parallaxFor(image); to.x(0); to.y(0); }
+        });
+      });
+    };
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", startGardenMotion);
+    } else {
+      startGardenMotion();
+    }
+    // Safety net: never leave the wall hidden if GSAP fails to arrive.
+    window.setTimeout(() => {
+      if (!gallery.dataset.motionStarted) motionRoot.classList.remove("motion");
+    }, 2500);
   }
 
   // Bookshelf — filterable index of real covers with flip-card notes.
