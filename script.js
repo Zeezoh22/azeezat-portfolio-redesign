@@ -204,7 +204,8 @@
         imageY: quick(image, "y", 0.7)
       };
 
-      const idle = gsap.to(scene, { y: -6, duration: 3.4, ease: "sine.inOut", yoyo: true, repeat: -1 });
+      const hoverLift = (active) => gsap.to(orb, { scale: active ? 1.07 : 1, z: active ? 28 : 0, duration: 0.55, ease: "power3.out", overwrite: "auto" });
+      const idle = gsap.to(scene, { y: -10, duration: 3.6, ease: "sine.inOut", yoyo: true, repeat: -1 });
 
       let rect = avatar.getBoundingClientRect();
       let frame = 0;
@@ -215,16 +216,16 @@
         if (!event) return;
         const nx = (event.clientX - rect.left) / rect.width - 0.5;
         const ny = (event.clientY - rect.top) / rect.height - 0.5;
-        set.rotateY(nx * 16);
-        set.rotateX(-ny * 16);
-        set.orbX(nx * 12);
-        set.orbY(ny * 12);
-        set.backX(-nx * 18);
-        set.backY(-ny * 14);
-        set.sheenX(-nx * 10);
-        set.sheenY(-ny * 8);
-        set.imageX(-nx * 8);
-        set.imageY(-ny * 6);
+        set.rotateY(nx * 34);
+        set.rotateX(-ny * 34);
+        set.orbX(nx * 22);
+        set.orbY(ny * 22);
+        set.backX(-nx * 44);
+        set.backY(-ny * 34);
+        set.sheenX(-nx * 26);
+        set.sheenY(-ny * 20);
+        set.imageX(-nx * 20);
+        set.imageY(-ny * 15);
       };
 
       const onMove = (event) => {
@@ -237,10 +238,12 @@
         if (event.pointerType === "touch") return;
         rect = avatar.getBoundingClientRect();
         idle.pause();
+        hoverLift(true);
       };
       const onLeave = () => {
         last = null;
         idle.play();
+        hoverLift(false);
         Object.keys(set).forEach((key) => set[key](0));
       };
 
