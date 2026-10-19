@@ -40,7 +40,8 @@ dialog{border:1px solid var(--ink);max-width:min(620px,calc(100vw - 2rem));paddi
 .hero-avatar-sheen{position:absolute;inset:0;border-radius:50%;pointer-events:none;mix-blend-mode:soft-light;background:radial-gradient(120% 100% at 30% 20%,rgba(255,255,255,.45),rgba(255,255,255,.08) 42%,rgba(255,255,255,0) 62%),radial-gradient(150% 120% at 76% 94%,rgba(32,32,32,.18),rgba(32,32,32,0) 58%)}
 @media(min-width:681px){.hero{grid-template-columns:minmax(180px,280px) minmax(0,1fr);column-gap:clamp(2rem,5vw,5rem)}}
 @media(min-width:681px) and (max-width:960px){.hero{grid-template-columns:minmax(150px,200px) minmax(0,1fr)}.hero-avatar{max-width:200px}}
-@media(max-width:680px){.hero-aside{gap:1.5rem}.hero-avatar{width:140px}}
+.hero-cta-group{grid-column:2;display:flex;flex-wrap:wrap;gap:1.5rem;margin-top:2.5rem;align-items:center}
+@media(max-width:680px){.hero-aside{gap:1.5rem}.hero-avatar{width:140px}.hero-cta-group{flex-direction:column;align-items:flex-start;gap:1rem}}
 
 /* Work — filter tabs + grouped editorial project index */
 .work-filters{display:flex;flex-wrap:wrap;gap:.25rem 1.4rem;margin-top:2.5rem;border-bottom:1px solid var(--line)}
