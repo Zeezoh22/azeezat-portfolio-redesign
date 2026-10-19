@@ -24,6 +24,8 @@ window.PORTFOLIO_CONTENT = {
       classification: "professional",
       industry: "E-commerce, logistics & travel",
       pending: false,
+      image: "assets/work/konga-cover.webp?v=1",
+      journey: "assets/work/konga-journey.webp?v=1",
       description: "Designing UI/UX for customer-facing and internal products across Konga Logistics, Konga Travels, the main e-commerce platform, and SHQ/admin systems.",
       url: null,
       children: [
@@ -43,6 +45,8 @@ window.PORTFOLIO_CONTENT = {
       classification: "professional",
       industry: "Fintech",
       pending: false,
+      image: "assets/work/xtrempay-hand.webp",
+      journey: "assets/work/xtrempay-journey.webp?v=4",
       description: "Product design across the mobile app, website, admin dashboard, and design system for a gamified savings and financial-product experience.",
       url: null,
       children: [
@@ -50,23 +54,6 @@ window.PORTFOLIO_CONTENT = {
         { name: "Website", domain: "Product & marketing site", description: "Design for the Xtrempay website.", url: null, pending: false },
         { name: "Admin dashboard", domain: "Internal fintech dashboard", description: "Design for the Xtrempay admin dashboard.", url: null, pending: false },
         { name: "Design system", domain: "Design system", description: "Component and pattern foundations supporting the Xtrempay product suite.", url: null, pending: false }
-      ]
-    },
-    {
-      name: "Techlava Softwares",
-      group: true,
-      context: "Techlava Softwares",
-      role: "UI/UX Expert",
-      employment: "Full-time",
-      dates: "September 2024–February 2026",
-      classification: "professional",
-      industry: "Legal technology",
-      pending: false,
-      description: "Focus on UI/UX design, translating product needs into user-centred interface solutions across Softdox and Legal Flow.",
-      url: null,
-      children: [
-        { name: "Softdox", domain: "Legal technology", description: "Softdox is a comprehensive legal management platform designed to simplify legal processes and help legal teams manage their work more efficiently.", url: null, pending: false },
-        { name: "Legal Flow", domain: "Legal technology", description: "A legal product area at Techlava Softwares.", url: null, pending: true }
       ]
     },
     {
@@ -78,10 +65,31 @@ window.PORTFOLIO_CONTENT = {
       dates: "March 2025–February 2026",
       classification: "professional",
       industry: "Martial arts management",
+      image: "assets/work/dojo-shot-2.webp?v=2",
+      journey: "assets/work/dojo-journey.webp?v=2",
       pending: false,
       description: "Product and interface design for a martial-arts management platform, including user flows, wireframes, and prototypes.",
       url: null,
       children: []
+    },
+    {
+      name: "Softdox",
+      group: true,
+      context: "Techlava Softwares",
+      role: "UI/UX Expert",
+      employment: "Full-time",
+      dates: "September 2024–February 2026",
+      classification: "professional",
+      industry: "Legal technology",
+      pending: false,
+      image: "assets/work/softdox-macbook.webp?v=1",
+      journey: "assets/work/softdox-journey.webp?v=1",
+      description: "Focus on UI/UX design, translating product needs into user-centred interface solutions across Softdox and Legal Flow.",
+      url: null,
+      children: [
+        { name: "Softdox", domain: "Legal technology", description: "Softdox is a comprehensive legal management platform designed to simplify legal processes and help legal teams manage their work more efficiently.", url: null, pending: false },
+        { name: "Legal Flow", domain: "Legal technology", description: "A legal product area at Techlava Softwares.", url: null, pending: true }
+      ]
     },
     {
       name: "MyWantShop",

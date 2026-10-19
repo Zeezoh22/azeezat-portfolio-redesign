@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" font-family="Helvetica Neue, Helvetica, Arial, sans-serif">
+  <rect width="900" height="600" fill="#ffffff"/>
+  <rect x="0" y="56" width="900" height="1" fill="#ecebe5"/>
+  <text x="26" y="36" font-size="20" font-weight="700" fill="#202020">Konga</text>
+  <text x="112" y="34" font-size="12.5" fill="#64625d">Retail</text>
+  <text x="168" y="34" font-size="12.5" fill="#64625d">Logistics</text>
+  <text x="240" y="34" font-size="12.5" fill="#64625d">Travels</text>
+  <text x="312" y="34" font-size="12.5" fill="#64625d">SHQ</text>
+  <rect x="560" y="12" width="206" height="32" rx="16" fill="#f5f4f0"/>
+  <circle cx="578" cy="28" r="6" fill="none" stroke="#64625d" stroke-width="1.6"/>
+  <line x1="582" y1="32" x2="586" y2="36" stroke="#64625d" stroke-width="1.6" stroke-linecap="round"/>
+  <text x="596" y="32" font-size="11" fill="#a5a39c">Search products</text>
+  <rect x="780" y="12" width="94" height="32" rx="16" fill="#202020"/>
+  <text x="800" y="32" font-size="11.5" fill="#ffffff">Cart · 3</text>
+  <rect x="26" y="76" width="848" height="112" rx="16" fill="#202020"/>
+  <text x="54" y="122" font-size="21" font-weight="700" fill="#ffffff">Customer favourites, delivered anywhere</text>
+  <text x="54" y="146" font-size="12" fill="#a5a39c">Next-day delivery to 36 states via Konga Logistics.</text>
+  <rect x="54" y="158" width="96" height="30" rx="15" fill="none" stroke="#ffffff" stroke-opacity="0.4" stroke-width="1.4"/>
+  <text x="72" y="177" font-size="11" fill="#ffffff">Shop now</text>
+  <circle cx="790" cy="106" r="52" fill="#ffffff" opacity="0.06"/>
+  <circle cx="742" cy="150" r="30" fill="#ffffff" opacity="0.06"/>
+  <rect x="26" y="212" width="102" height="30" rx="15" fill="#f5f4f0"/>
+  <text x="48" y="231" font-size="11" fill="#202020">Marketplace</text>
+  <rect x="138" y="212" width="86" height="30" rx="15" fill="#f5f4f0"/>
+  <text x="164" y="231" font-size="11" fill="#202020">Logistics</text>
+  <rect x="234" y="212" width="74" height="30" rx="15" fill="#f5f4f0"/>
+  <text x="256" y="231" font-size="11" fill="#202020">Travels</text>
+  <rect x="318" y="212" width="62" height="30" rx="15" fill="#f5f4f0"/>
+  <text x="336" y="231" font-size="11" fill="#202020">SHQ</text>
+  <text x="874" y="231" font-size="10.5" fill="#a5a39c" text-anchor="end">View all</text>
+  <g>
+    <rect x="26" y="262" width="196" height="266" rx="14" fill="#ffffff" stroke="#ecebe5" stroke-width="1"/>
+    <rect x="26" y="262" width="196" height="146" rx="14" fill="#f0efe9"/>
+    <rect x="86" y="296" width="76" height="86" rx="10" fill="#e3e1da"/>
+    <circle cx="124" cy="326" r="20" fill="#d8d6cf"/>
+    <text x="40" y="432" font-size="12" fill="#202020">Ankara tote bag</text>
+    <text x="40" y="456" font-size="13" font-weight="700" fill="#202020">₦9,800</text>
+    <text x="40" y="474" font-size="10" fill="#a5a39c">★ 4.6 · 212 sold</text>
+    <rect x="40" y="488" width="88" height="26" rx="13" fill="#202020"/>
+    <text x="58" y="505" font-size="10" fill="#ffffff">Add to cart</text>
+    <rect x="246" y="262" width="196" height="266" rx="14" fill="#ffffff" stroke="#ecebe5" stroke-width="1"/>
+    <rect x="246" y="262" width="196" height="146" rx="14" fill="#f0efe9"/>
+    <rect x="306" y="290" width="76" height="96" rx="10" fill="#e3e1da"/>
+    <rect x="320" y="304" width="48" height="30" rx="6" fill="#d8d6cf"/>
+    <text x="260" y="432" font-size="12" fill="#202020">Wireless earbuds</text>
+    <text x="260" y="456" font-size="13" font-weight="700" fill="#202020">₦24,500</text>
+    <text x="260" y="474" font-size="10" fill="#a5a39c">★ 4.8 · 930 sold</text>
+    <rect x="260" y="488" width="88" height="26" rx="13" fill="#202020"/>
+    <text x="278" y="505" font-size="10" fill="#ffffff">Add to cart</text>
+    <rect x="466" y="262" width="196" height="266" rx="14" fill="#ffffff" stroke="#ecebe5" stroke-width="1"/>
+    <rect x="466" y="262" width="196" height="146" rx="14" fill="#f0efe9"/>
+    <rect x="526" y="286" width="86" height="100" rx="12" fill="#e3e1da"/>
+    <rect x="538" y="306" width="62" height="42" rx="6" fill="#d8d6cf"/>
+    <text x="480" y="432" font-size="12" fill="#202020">Handwoven rug</text>
+    <text x="480" y="456" font-size="13" font-weight="700" fill="#202020">₦18,000</text>
+    <text x="480" y="474" font-size="10" fill="#a5a39c">★ 4.5 · 184 sold</text>
+    <rect x="480" y="488" width="88" height="26" rx="13" fill="#202020"/>
+    <text x="498" y="505" font-size="10" fill="#ffffff">Add to cart</text>
+    <rect x="686" y="262" width="196" height="266" rx="14" fill="#ffffff" stroke="#ecebe5" stroke-width="1"/>
+    <rect x="686" y="262" width="196" height="146" rx="14" fill="#f0efe9"/>
+    <rect x="746" y="292" width="72" height="92" rx="10" fill="#e3e1da"/>
+    <circle cx="782" cy="322" r="22" fill="#d8d6cf"/>
+    <text x="700" y="432" font-size="12" fill="#202020">Air fryer 4L</text>
+    <text x="700" y="456" font-size="13" font-weight="700" fill="#202020">₦41,250</text>
+    <text x="700" y="474" font-size="10" fill="#a5a39c">★ 4.7 · 512 sold</text>
+    <rect x="700" y="488" width="88" height="26" rx="13" fill="#202020"/>
+    <text x="718" y="505" font-size="10" fill="#ffffff">Add to cart</text>
+  </g>
+  <rect x="0" y="552" width="900" height="1" fill="#ecebe5"/>
+  <text x="450" y="582" font-size="10" fill="#a5a39c" text-anchor="middle">Seller HQ · Admin · Logistics dashboard</text>
+</svg>

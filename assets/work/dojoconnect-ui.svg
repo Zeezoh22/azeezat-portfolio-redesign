@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" font-family="Helvetica Neue, Helvetica, Arial, sans-serif">
+  <rect width="900" height="600" fill="#ffffff"/>
+  <rect x="0" y="0" width="196" height="600" fill="#202020"/>
+  <circle cx="34" cy="42" r="13" fill="#f5f4f0"/>
+  <text x="56" y="47" font-size="13" font-weight="700" fill="#ffffff">DojoConnect</text>
+  <text x="32" y="96" font-size="11.5" fill="#a5a39c">Dashboard</text>
+  <text x="32" y="134" font-size="11.5" fill="#64625d">Members</text>
+  <text x="32" y="172" font-size="11.5" fill="#64625d">Classes</text>
+  <text x="32" y="210" font-size="11.5" fill="#64625d">Billing</text>
+  <text x="32" y="248" font-size="11.5" fill="#64625d">Attendance</text>
+  <rect x="24" y="540" width="148" height="34" rx="17" fill="#f5f4f0"/>
+  <text x="44" y="561" font-size="10.5" fill="#202020">New class</text>
+  <text x="236" y="66" font-size="18" font-weight="700" fill="#202020">Dashboard</text>
+  <rect x="756" y="44" width="118" height="32" rx="16" fill="#f5f4f0"/>
+  <circle cx="774" cy="60" r="6" fill="#d8d6cf"/>
+  <text x="790" y="64" font-size="10.5" fill="#64625d">This week</text>
+  <rect x="236" y="96" width="212" height="112" rx="14" fill="#f5f4f0"/>
+  <text x="254" y="126" font-size="10.5" fill="#64625d">Active members</text>
+  <text x="254" y="162" font-size="26" font-weight="700" fill="#202020">128</text>
+  <rect x="254" y="176" width="24" height="10" rx="5" fill="#b8b6af"/>
+  <text x="286" y="184" font-size="10" fill="#64625d">this month</text>
+  <rect x="468" y="96" width="212" height="112" rx="14" fill="#f5f4f0"/>
+  <text x="486" y="126" font-size="10.5" fill="#64625d">Monthly billing</text>
+  <text x="486" y="162" font-size="26" font-weight="700" fill="#202020">₦1.84M</text>
+  <rect x="486" y="176" width="24" height="10" rx="5" fill="#b8b6af"/>
+  <text x="518" y="184" font-size="10" fill="#64625d">subscriptions</text>
+  <rect x="700" y="96" width="174" height="112" rx="14" fill="#f5f4f0"/>
+  <text x="718" y="126" font-size="10.5" fill="#64625d">Attendance</text>
+  <text x="718" y="162" font-size="26" font-weight="700" fill="#202020">86%</text>
+  <rect x="718" y="176" width="24" height="10" rx="5" fill="#b8b6af"/>
+  <text x="750" y="184" font-size="10" fill="#64625d">checked in</text>
+  <text x="236" y="244" font-size="14" font-weight="600" fill="#202020">Today's classes</text>
+  <text x="874" y="244" font-size="10.5" fill="#a5a39c" text-anchor="end">Full schedule</text>
+  <rect x="236" y="262" width="638" height="1" fill="#ecebe5"/>
+  <rect x="236" y="282" width="74" height="24" rx="12" fill="#202020"/>
+  <text x="256" y="298" font-size="10" fill="#ffffff">4:00 PM</text>
+  <text x="330" y="298" font-size="12.5" fill="#202020">Kids BJJ</text>
+  <text x="840" y="298" font-size="10.5" fill="#64625d" text-anchor="end">14 booked</text>
+  <circle cx="436" cy="294" r="4" fill="#b8b6af"/>
+  <rect x="236" y="334" width="638" height="1" fill="#ecebe5"/>
+  <rect x="236" y="354" width="74" height="24" rx="12" fill="#f5f4f0"/>
+  <text x="256" y="370" font-size="10" fill="#202020">5:30 PM</text>
+  <text x="330" y="370" font-size="12.5" fill="#202020">Beginners Karate</text>
+  <text x="840" y="370" font-size="10.5" fill="#64625d" text-anchor="end">18 booked</text>
+  <circle cx="452" cy="366" r="4" fill="#b8b6af"/>
+  <rect x="236" y="406" width="638" height="1" fill="#ecebe5"/>
+  <rect x="236" y="426" width="74" height="24" rx="12" fill="#f5f4f0"/>
+  <text x="256" y="442" font-size="10" fill="#202020">7:00 PM</text>
+  <text x="330" y="442" font-size="12.5" fill="#202020">Open Mat</text>
+  <text x="840" y="442" font-size="10.5" fill="#64625d" text-anchor="end">9 booked</text>
+  <circle cx="420" cy="438" r="4" fill="#b8b6af"/>
+  <rect x="236" y="478" width="638" height="1" fill="#ecebe5"/>
+  <text x="236" y="516" font-size="13" font-weight="600" fill="#202020">Attendance this month</text>
+  <rect x="236" y="536" width="638" height="1" fill="#ecebe5"/>
+  <polyline points="260,580 340,566 420,572 500,554 580,560 660,540 740,548 820,530 874,534" fill="none" stroke="#202020" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <polyline points="260,580 340,566 420,572 500,554 580,560 660,540 740,548 820,530 874,534 874,596 260,596" fill="#f5f4f0" opacity="0.7"/>
+  <polyline points="260,580 340,566 420,572 500,554 580,560 660,540 740,548 820,530 874,534" fill="none" stroke="#202020" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

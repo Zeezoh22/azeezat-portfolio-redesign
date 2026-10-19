@@ -39,98 +39,167 @@
     });
   }
 
+  // Hero headline — types "I design digital experiences." once, then holds it
+  // with a blinking cursor. Space is reserved from an invisible sizer so the
+  // introduction, name, metadata and buttons never shift as characters appear.
+  // Screen readers get the full sentence via the visually-hidden copy; the
+  // animated fragments are aria-hidden. Respects prefers-reduced-motion.
+  const heroTitle = $("#hero-title");
+  if (heroTitle) {
+    const typed = heroTitle.querySelector(".hero-title-text");
+    const sizer = heroTitle.querySelector(".hero-title-sizer");
+    const reduced = matchMedia("(prefers-reduced-motion: reduce)");
+    const sentences = [
+      "hey there!",
+      "I'm Azeezat",
+      "Welcome to my space",
+      "I make complex things feel simple.",
+      "I turn ideas into useful products.",
+      "Simplicity is my superpower.",
+    ];
+    let timer = null;
+    let phrase = 0;
+    let index = 0;
+    let deleting = false;
+
+    const reserve = () => {
+      if (!sizer) return;
+      let tallest = 0;
+      sentences.forEach((sentence) => {
+        sizer.textContent = sentence;
+        tallest = Math.max(tallest, sizer.offsetHeight);
+      });
+      sizer.textContent = sentences[0];
+      heroTitle.style.minHeight = `${tallest}px`;
+    };
+
+    const showFull = () => {
+      clearTimeout(timer);
+      timer = null;
+      if (typed) typed.textContent = sentences[0];
+      heroTitle.classList.add("is-typed");
+    };
+
+    const tick = () => {
+      const sentence = sentences[phrase];
+      if (!deleting) {
+        index += 1;
+        typed.textContent = sentence.slice(0, index);
+        if (index < sentence.length) {
+          const character = sentence.charAt(index - 1);
+          timer = setTimeout(tick, character === " " ? 110 : 55);
+        } else {
+          deleting = true;
+          timer = setTimeout(tick, 1800);
+        }
+      } else {
+        index -= 1;
+        typed.textContent = sentence.slice(0, index);
+        if (index > 0) {
+          timer = setTimeout(tick, 30);
+        } else {
+          deleting = false;
+          phrase = (phrase + 1) % sentences.length;
+          timer = setTimeout(tick, 450);
+        }
+      }
+    };
+
+    const start = () => {
+      if (!typed) return;
+      if (reduced.matches) { showFull(); return; }
+      typed.textContent = "";
+      index = 0;
+      deleting = false;
+      timer = setTimeout(tick, 350);
+    };
+
+    reserve();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(reserve);
+    window.addEventListener("resize", reserve, { passive: true });
+    reduced.addEventListener("change", () => {
+      clearTimeout(timer);
+      timer = null;
+      if (reduced.matches) { showFull(); } else { index = 0; deleting = false; start(); }
+    });
+    start();
+
+    window.addEventListener("pagehide", () => clearTimeout(timer), { once: true });
+  }
+
   // Experience timeline.
   const timeline = $("#timeline");
   if (timeline) {
-    timeline.innerHTML = (data.experience || []).map((item) => `<li><div class="timeline-meta">${escapeHtml(item.dates)}<br>${escapeHtml(item.type)}</div><div><h3>${escapeHtml(item.employer)}</h3><p>${escapeHtml(item.role)}${item.context ? ` · ${escapeHtml(item.context)}` : ""}</p><p>${escapeHtml(item.scope)}</p></div></li>`).join("");
+    timeline.innerHTML = (data.experience || []).map((item) => `<li><h3 class="timeline-role">${escapeHtml(item.role)}</h3><p class="timeline-meta">${escapeHtml(item.employer)}<span class="timeline-sep" aria-hidden="true">|</span>${escapeHtml(item.dates)}</p></li>`).join("");
   }
 
-  // Work — grouped, filterable project index rendered entirely from content.js.
-  const projectPanel = $("#project-list");
-  if (projectPanel) {
+  // Selected work — cover cards in a two-column grid. Up to four entries are
+  // shown; entries flagged `featured: true` in content.js take priority.
+
+  const workGrid = $("#work-grid");
+  if (workGrid) {
     const projects = data.projects || [];
-    const tabs = $$(".work-tab");
-    const status = $("#work-status");
-    const pendingLabel = `<span class="work-pending">Details pending</span>`;
-    const slugify = (value) => String(value).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
-    const matchesFilter = (project, filter) => filter === "all" || (project.classification || "pending") === filter;
+    const featured = projects.filter((project) => project.featured);
+    const selected = featured.length ? featured.slice(0, 4) : projects.slice(0, 4);
 
-    const mainMarkup = (project) => {
-      const metaBits = [project.role, project.employment, project.dates].filter(Boolean).map(escapeHtml);
-      const meta = metaBits.length ? `<span class="work-meta">${metaBits.join(" · ")}</span>` : "";
-      const desc = project.description ? `<span class="work-desc">${escapeHtml(project.description)}</span>` : "";
-      const pending = project.pending ? pendingLabel : "";
-      const proposed = (project.pending && project.proposed)
-        ? `<span class="work-proposed">Proposed: ${escapeHtml(project.proposed.classification)} · ${escapeHtml(project.proposed.industry)} (pending confirmation)</span>`
+    const cardMarkup = (project) => {
+      const journey = project.journey
+        ? `<img class="work-journey" data-src="${escapeHtml(project.journey)}" alt="" aria-hidden="true" />`
         : "";
-      return `<span class="work-main"><span class="work-name">${escapeHtml(project.name)}${pending}</span>${meta}${desc}${proposed}</span>`;
+      const cover = project.image
+        ? `<div class="work-cover"${project.journey ? " data-journey" : ""}><img src="${escapeHtml(project.image)}" alt="" loading="lazy" />${journey}</div>`
+        : `<div class="work-cover" aria-hidden="true"></div>`;
+      const tags = [...new Set((project.group && project.children ? project.children.map((child) => child.domain) : [project.industry]).filter(Boolean))];
+      const tagList = tags.length ? `<ul class="work-tags">${tags.map((tag) => `<li>${escapeHtml(tag)}</li>`).join("")}</ul>` : "";
+      const pending = project.pending ? `<p class="work-pending">Details pending</p>` : "";
+      return `<article class="work-card"${project.journey ? " data-journey" : ""}>${cover}<h3 class="work-card-name">${escapeHtml(project.name)}</h3>${pending}${tagList}</article>`;
     };
 
-    const childMarkup = (child) => {
-      const name = `${escapeHtml(child.name)}${child.pending ? ` ${pendingLabel}` : ""}`;
-      const desc = child.description ? `<span class="work-desc">${escapeHtml(child.description)}</span>` : "";
-      const domain = child.domain ? `<span class="work-child-domain">${escapeHtml(child.domain)}</span>` : "";
-      return `<li class="work-child"><span class="work-main"><span class="work-child-name">${name}</span>${desc}</span><span class="work-side">${domain}</span></li>`;
-    };
+    workGrid.innerHTML = selected.map(cardMarkup).join("");
 
-    const entryMarkup = (project) => {
-      const industry = project.industry ? `<span class="work-industry">${escapeHtml(project.industry)}</span>` : "";
-      if (project.group && project.children && project.children.length) {
-        const id = `work-children-${slugify(project.name)}`;
-        const children = project.children.map(childMarkup).join("");
-        return `<li class="work-entry work-entry--group"><button class="work-row" type="button" aria-expanded="false" aria-controls="${id}">${mainMarkup(project)}<span class="work-side">${industry}<span class="work-arrow" aria-hidden="true">›</span></span></button><div class="work-children" id="${id}" role="region" aria-label="${escapeHtml(project.name)} product areas" hidden><ul class="work-child-list">${children}</ul></div></li>`;
-      }
-      return `<li class="work-entry"><div class="work-row work-row--static">${mainMarkup(project)}<span class="work-side">${industry}</span></div></li>`;
-    };
-
-    let activeFilter = "all";
-    const renderList = (filter) => {
-      const visible = projects.filter((project) => matchesFilter(project, filter));
-      if (visible.length) {
-        projectPanel.innerHTML = `<ul class="work-list">${visible.map(entryMarkup).join("")}</ul>`;
-      } else {
-        projectPanel.innerHTML = `<p class="work-empty">No projects in this category yet. Projects whose context is proposed but not yet confirmed are kept under “Details pending”.</p>`;
-      }
-      if (status) status.textContent = `${visible.length} ${visible.length === 1 ? "project" : "projects"} shown.`;
-    };
-
-    const activate = (filter, moveFocus) => {
-      activeFilter = filter;
-      tabs.forEach((tab) => {
-        const on = tab.dataset.filter === filter;
-        tab.setAttribute("aria-selected", String(on));
-        tab.tabIndex = on ? 0 : -1;
+    // Journey walkthroughs: hovering (or focusing) a card with a journey asset
+    // crossfades the product screen into a muted, looping auto walkthrough.
+    // The animated WebP is attached lazily on first activation and detached on
+    // leave so nothing decodes at rest. Skipped entirely for reduced motion.
+    const journeyReduced = matchMedia("(prefers-reduced-motion: reduce)");
+    const journeyCards = () => Array.from(workGrid.querySelectorAll(".work-card[data-journey]"));
+    journeyCards().forEach((card) => {
+      const journeyImg = card.querySelector(".work-journey");
+      const live = (on) => {
         if (on) {
-          projectPanel.setAttribute("aria-labelledby", tab.id);
-          if (moveFocus) tab.focus();
+          if (journeyReduced.matches || !journeyImg) return;
+          if (!journeyImg.src) journeyImg.src = journeyImg.dataset.src;
+          card.classList.add("is-live");
+        } else {
+          card.classList.remove("is-live");
+          if (journeyImg) journeyImg.removeAttribute("src");
         }
+      };
+      card.addEventListener("pointerenter", () => live(true));
+      card.addEventListener("pointerleave", () => live(false));
+      card.addEventListener("focusin", () => live(true));
+      card.addEventListener("focusout", () => {
+        if (!card.contains(document.activeElement)) live(false);
       });
-      renderList(activeFilter);
-    };
-
-    tabs.forEach((tab) => {
-      tab.addEventListener("click", () => activate(tab.dataset.filter, false));
-      tab.addEventListener("keydown", (event) => {
-        const index = tabs.indexOf(tab);
-        let next = null;
-        if (event.key === "ArrowRight") next = tabs[(index + 1) % tabs.length];
-        else if (event.key === "ArrowLeft") next = tabs[(index - 1 + tabs.length) % tabs.length];
-        else if (event.key === "Home") next = tabs[0];
-        else if (event.key === "End") next = tabs[tabs.length - 1];
-        if (next) { event.preventDefault(); activate(next.dataset.filter, true); }
+      // Touch: tap the cover to start/stop the walkthrough.
+      const cover = card.querySelector(".work-cover");
+      if (cover) cover.addEventListener("click", () => {
+        eventJourneyToggle(card, cover);
       });
     });
 
-    projectPanel.addEventListener("click", (event) => {
-      const button = event.target.closest(".work-row[aria-expanded]");
-      if (!button) return;
-      const region = document.getElementById(button.getAttribute("aria-controls"));
-      const open = button.getAttribute("aria-expanded") === "true";
-      button.setAttribute("aria-expanded", String(!open));
-      if (region) region.hidden = open;
-    });
-
-    renderList(activeFilter);
+    function eventJourneyToggle(card, cover) {
+      const journeyImg = card.querySelector(".work-journey");
+      if (!journeyImg) return;
+      if (card.classList.contains("is-live")) {
+        card.classList.remove("is-live");
+        journeyImg.removeAttribute("src");
+      } else if (!journeyReduced.matches) {
+        if (!journeyImg.src) journeyImg.src = journeyImg.dataset.src;
+        card.classList.add("is-live");
+      }
+      cover.focus();
+    }
   }
 
   // Journaling — latest real articles on the homepage.
@@ -604,5 +673,62 @@
     });
 
     render();
+  }
+
+  // Booking — quiet floating button with an explainer card that links to Calendly.
+  // Replace the placeholder once the Calendly event type exists.
+  const CALENDLY_URL = "https://calendly.com/contact-byzee/30min";
+  if (!$("#book-fab")) {
+    const wrap = document.createElement("div");
+    wrap.className = "book-widget";
+    wrap.innerHTML = `
+      <div class="book-card" id="book-card" role="dialog" aria-label="Book a session" hidden>
+        <button class="book-close" type="button" aria-label="Close">&times;</button>
+        <p class="book-kicker">Booking</p>
+        <p class="book-title">Book a session</p>
+        <p class="book-copy">Product feedback, UX advice, or design career guidance — pick a time that works for you.</p>
+        <a class="book-link" href="${escapeHtml(CALENDLY_URL)}" target="_blank" rel="noopener noreferrer">
+          Book a session
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5.5" width="17" height="13" rx="2.5" /><path d="M4.5 7.5 12 13l7.5-5.5" /></svg>
+        </a>
+      </div>
+      <button class="book-fab" id="book-fab" type="button" aria-expanded="false" aria-controls="book-card" aria-haspopup="dialog" aria-label="Book a session">
+        <span class="book-label" aria-hidden="true">Book a session</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="16" rx="2.5" /><path d="M3.5 9.5h17" /><path d="M8 2.5v4M16 2.5v4" /></svg>
+      </button>`;
+    document.body.appendChild(wrap);
+    const fab = wrap.querySelector(".book-fab");
+    const card = wrap.querySelector(".book-card");
+    const close = wrap.querySelector(".book-close");
+    const setOpen = (open) => {
+      card.hidden = !open;
+      requestAnimationFrame(() => card.classList.toggle("is-open", open));
+      fab.setAttribute("aria-expanded", String(open));
+      if (open) close.focus();
+      else fab.focus();
+    };
+    fab.addEventListener("click", () => {
+      fab.classList.remove("is-peek");
+      setOpen(card.hidden);
+    });
+    close.addEventListener("click", () => setOpen(false));
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && !card.hidden) setOpen(false);
+    });
+    document.addEventListener("click", (event) => {
+      if (!card.hidden && !wrap.contains(event.target)) setOpen(false);
+    });
+    // one gentle self-peek per session so visitors learn what the button does
+    try {
+      if (!sessionStorage.getItem("book-peeked")) {
+        sessionStorage.setItem("book-peeked", "1");
+        setTimeout(() => {
+          if (card.hidden) {
+            fab.classList.add("is-peek");
+            setTimeout(() => fab.classList.remove("is-peek"), 3200);
+          }
+        }, 2200);
+      }
+    } catch (error) { /* storage unavailable — skip the peek */ }
   }
 })();
