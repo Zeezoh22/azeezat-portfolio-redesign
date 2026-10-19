@@ -680,26 +680,26 @@
   const CALENDLY_URL = "https://calendly.com/contact-byzee/30min";
   if (!$("#book-fab")) {
     const wrap = document.createElement("div");
-    wrap.className = "book-widget";
+    wrap.className = "bk-widget";
     wrap.innerHTML = `
-      <div class="book-card" id="book-card" role="dialog" aria-label="Book a session" hidden>
-        <button class="book-close" type="button" aria-label="Close">&times;</button>
-        <p class="book-kicker">Booking</p>
-        <p class="book-title">Book a session</p>
-        <p class="book-copy">Product feedback, UX advice, or design career guidance — pick a time that works for you.</p>
-        <a class="book-link" href="${escapeHtml(CALENDLY_URL)}" target="_blank" rel="noopener noreferrer">
+      <div class="bk-card" id="book-card" role="dialog" aria-label="Book a session" hidden>
+        <button class="bk-close" type="button" aria-label="Close">&times;</button>
+        <p class="bk-kicker">Booking</p>
+        <p class="bk-title">Book a session</p>
+        <p class="bk-copy">Product feedback, UX advice, or design career guidance — pick a time that works for you.</p>
+        <a class="bk-link" href="${escapeHtml(CALENDLY_URL)}" target="_blank" rel="noopener noreferrer">
           Book a session
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5.5" width="17" height="13" rx="2.5" /><path d="M4.5 7.5 12 13l7.5-5.5" /></svg>
         </a>
       </div>
-      <button class="book-fab" id="book-fab" type="button" aria-expanded="false" aria-controls="book-card" aria-haspopup="dialog" aria-label="Book a session">
-        <span class="book-label" aria-hidden="true">Book a session</span>
+      <button class="bk-fab" id="book-fab" type="button" aria-expanded="false" aria-controls="book-card" aria-haspopup="dialog" aria-label="Book a session">
+        <span class="bk-label" aria-hidden="true">Book a session</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="16" rx="2.5" /><path d="M3.5 9.5h17" /><path d="M8 2.5v4M16 2.5v4" /></svg>
       </button>`;
     document.body.appendChild(wrap);
-    const fab = wrap.querySelector(".book-fab");
-    const card = wrap.querySelector(".book-card");
-    const close = wrap.querySelector(".book-close");
+    const fab = wrap.querySelector(".bk-fab");
+    const card = wrap.querySelector(".bk-card");
+    const close = wrap.querySelector(".bk-close");
     const setOpen = (open) => {
       card.hidden = !open;
       requestAnimationFrame(() => card.classList.toggle("is-open", open));
