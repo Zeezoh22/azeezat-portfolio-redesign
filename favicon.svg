@@ -1,7 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Move tool">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Bezier tool">
   <rect width="32" height="32" rx="6" fill="#202020"/>
   <g fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M16 6v20M6 16h20"/>
-    <path d="M12 8l4-2 4 2M12 24l4 2 4-2M8 12l-2 4 2 4M24 12l2 4-2 4"/>
+    <path d="M8 23 C 12 9, 20 23, 24 9"/>
+    <rect x="10.8" y="5.2" width="4.4" height="4.4" fill="#ffffff" stroke="none"/>
+    <rect x="16.8" y="22.4" width="4.4" height="4.4" fill="#ffffff" stroke="none"/>
   </g>
 </svg>
